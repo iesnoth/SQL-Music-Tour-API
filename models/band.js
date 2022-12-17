@@ -1,43 +1,42 @@
-//DEPENDENCIES  
-const { Sequelize, DataTypes, Model } = require('sequelize')
-const sequelize = new Sequelize(process.env.PG_URI)
-
-//MODEL
-//what does extend do again?
-class Band extends Model {
-
-
-}
-//When writing a model, we call the init method on the model class. 
-Band.init({
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Band extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Band.init({
     band_id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
+        type:DataTypes.INTEGER,
+        primaryKey:true,
         autoIncrement: true
     },
     band_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type:DataTypes.STRING,
+        allowNull:false
     },
     genre: {
-        type: DataTypes.TEXT,
-        allowNull: false
+        type:DataTypes.TEXT,
+        allowNull:false
     },
     band_members: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type:DataTypes.INTEGER,
+        allowNull:false
     }
-},
-    //always include the "sequelize" connection instance before
-    //configuring the table
-    {
-        sequelize,
-        modelName: 'Band',
-        //Sequelize will assume the table is named "bands" so specify it here
-        tableName: 'band_info',
-        //Sequelize automatically creates createdAt and updatedAt columns.
-        //This gets rid of that.
-        timestamps: false
-    })
-//export
-module.exports = Band
+  }, {
+    sequelize,
+    modelName: 'Band',
+    tableName: 'band_info',
+    //to undo the createdAt and updatedAt automatic columns
+    timestamps: false
+  });
+  return Band;
+};

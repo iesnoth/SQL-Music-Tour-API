@@ -14,3 +14,12 @@ install sequelize with
 
 install native Postgres drivers by running the following:
 "npm i pg pg-hstore"
+
+### CLI commands
+to install: npm i -g sequelize-cli
+sequelize init:config- makes a configuration json file
+sequelize init:models- makes index.js in models folder
+sequelize init:migrations- makes migrations folder
+sequelize model:generate- makes models
+    NOTE: do not put spaces between -- and the word after it
+sequelize db:migrate- initialize after the model and migration are set up
