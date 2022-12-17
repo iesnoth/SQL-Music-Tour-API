@@ -11,10 +11,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      band_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       band_name: {
         type: Sequelize.STRING,
         allowNull: false
