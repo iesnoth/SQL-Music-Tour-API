@@ -14,12 +14,28 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   StageEvent.init({
-    stage_event_id: DataTypes.INTEGER,
-    stage_id: DataTypes.INTEGER,
-    event_id: DataTypes.INTEGER
+    stage_event_id: {
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      autoIncrement: true
+    },
+    stage_id: {
+      type:DataTypes.INTEGER,
+      reference:"stages",
+      referenceKey:"stage_id",
+      allowNull:false
+    },
+    event_id: {
+      type:DataTypes.INTEGER,
+      reference:"events",
+      referenceKey:"event_id",
+      allowNull:false
+    }
   }, {
     sequelize,
     modelName: 'StageEvent',
+    tableName: 'stage_events',
+    timestamps:false
   });
   return StageEvent;
 };
