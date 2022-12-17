@@ -31,6 +31,6 @@ module.exports = {
   },
   //down: will run when reverting the migration
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Bands');
+    await queryInterface.dropTable('band_info');
   }
 };
