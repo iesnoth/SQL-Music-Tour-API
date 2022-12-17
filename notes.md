@@ -23,3 +23,4 @@ sequelize init:migrations- makes migrations folder
 sequelize model:generate- makes models
     NOTE: do not put spaces between -- and the word after it
 sequelize db:migrate- initialize after the model and migration are set up
+sequelize seed:generate --name 'NAME'= creates a seeder folder with a new file in it
