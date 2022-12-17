@@ -8,3 +8,9 @@ Configuration/Middleware - Where we configure those dependency packages
 express.json() and express.urlencoded(...) - Configuration for body-parser, which parses request bodies that come in
 Root - A GET for the root route ('/'), responding with a simple welcome message
 Listen - Where we tell our app what port to listen for connections on
+
+install sequelize with
+"npm i sequelize"
+
+install native Postgres drivers by running the following:
+"npm i pg pg-hstore"
