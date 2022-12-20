@@ -10,9 +10,9 @@ bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
             order: [['band_name', 'ASC']],
-            // where: {
-            //     name: { [Op.like]: `%${req.query.band_name ? req.query.band_name : ''}%` }
-            // }
+            where: {
+                band_name: { [Op.like]: `%${req.query.band_name ? req.query.band_name : ''}% ` }
+            }
         })
         res.status(200).json(foundBands)
     } catch (error) {
