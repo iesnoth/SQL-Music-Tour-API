@@ -1,5 +1,5 @@
 //creating a router
-const bands = require('express').Router;
+const bands = require('express').Router();
 //have all the models at once through the index file
 const db = require('../models');
 const { Band } = db
