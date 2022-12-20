@@ -1,5 +1,6 @@
 //creating a router
 const bands = require('express').Router();
+const { Op } = require('sequelize')
 //have all the models at once through the index file
 const db = require('../models');
 const { Band } = db
@@ -7,12 +8,18 @@ const { Band } = db
 // FIND ALL BANDS
 bands.get('/', async (req, res) => {
     try {
-        const foundBands = await Band.findAll()
+        const foundBands = await Band.findAll({
+            order: [['band_name', 'ASC']],
+            // where: {
+            //     name: { [Op.like]: `%${req.query.band_name ? req.query.band_name : ''}%` }
+            // }
+        })
         res.status(200).json(foundBands)
-    } catch (err) {
-        res.status(500).json(err)
+    } catch (error) {
+        res.status(500).json(error)
     }
 })
+
 
 //find a specific band
 bands.get('/:id', async (req, res) => {
@@ -63,7 +70,7 @@ bands.get('/:id', (req, res) => {
 bands.delete('/:id', (req, res) => {
     try {
         const deleteBand = Band.destroy({
-            where:{
+            where: {
                 band_id: req.params.id
             }
         })
