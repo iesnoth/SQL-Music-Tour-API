@@ -14,14 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Stage.init({
-    band_id: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  }, {
-    sequelize,
-    modelName: 'Stage',
-    tableName: 'stages',
-    timestamps: false
-  });
+    stage_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    stage_hands: {
+      type: DataTypes.INTEGER
+    }
+  },
+    {
+      sequelize,
+      modelName: 'Stage',
+      tableName: 'stages',
+      timestamps: false
+    });
   return Stage;
 };

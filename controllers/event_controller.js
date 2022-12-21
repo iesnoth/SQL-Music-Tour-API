@@ -60,24 +60,20 @@ events.put('/:id', async (req, res) => {
 })
 
 
-// //delete bands
-// //this works, but the Band.destroy is returning a promise because of the await.
-// //I've fixed this before by calling the function outside the async/await, but I don't
-// //know if that will fly here.
-// //this might be why the update isn't working
-// bands.delete('/:id', async (req, res) => {
-//     try {
-//         const deleteBand = await Band.destroy({
-//             where: {
-//                 band_id: req.params.id
-//             }
-//         })
-//         res.status(200).json({
-//             message: `Successfully deleted ${deleteBand} band(s)`
-//         })
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// })
+//delete events
+events.delete('/:id', async (req, res) => {
+    try {
+        const deleteEvent = await Event.destroy({
+            where: {
+                event_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `Successfully deleted ${deleteEvent} event(s)`
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 module.exports = events
