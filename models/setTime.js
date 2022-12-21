@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class setTime extends Model {
+  class SetTime extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  setTime.init({
+  SetTime.init({
     set_time_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -47,9 +47,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'setTime',
+    modelName: 'SetTime',
     tableName: 'set_times',
     timestamps: false
   });
-  return setTime;
+  return SetTime;
 };
