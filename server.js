@@ -2,7 +2,7 @@
 const express = require('express')
 const app = express()
 //requiring Sequelize, which comes with its own class
-const {Sequelize} = require('sequelize')
+const { Sequelize } = require('sequelize')
 
 // CONFIGURATION / MIDDLEWARE
 require('dotenv').config()
@@ -32,6 +32,9 @@ app.get('/', (req, res) => {
 // CONTROLLERS 
 const bandsController = require('./controllers/bands_controller')
 app.use('/bands', bandsController)
+
+const eventsController = require('./controllers/event_controller')
+app.use('/events', eventsController)
 
 // LISTEN
 app.listen(process.env.PORT, () => {

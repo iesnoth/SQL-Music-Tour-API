@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Event.init({
-    band_id: {
+    event_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
@@ -24,22 +24,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     city: {
-      type:DataTypes.TEXT,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     date_start: {
       type: DataTypes.DATE,
       allowNull: false
     },
-    date_end:{
-      type:DataTypes.DATE,
+    date_end: {
+      type: DataTypes.DATE,
       allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Event',
     tableName: 'events',
-    timestamps:false
+    timestamps: false
   });
   return Event;
 };
