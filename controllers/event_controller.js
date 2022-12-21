@@ -1,11 +1,10 @@
 //creating a router
 const events = require('express').Router();
-//const { Op } = require('sequelize')
 //have all the models at once through the index file
 const db = require('../models');
 const { Event } = db
 
-// FIND ALL BANDS
+// find all events
 events.get('/', async (req, res) => {
     try {
         const foundEvents = await Event.findAll()
@@ -16,7 +15,7 @@ events.get('/', async (req, res) => {
 })
 
 
-//find a specific band
+//find a specific event
 events.get('/:id', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
@@ -28,7 +27,7 @@ events.get('/:id', async (req, res) => {
     }
 })
 
-//create
+//create events
 events.post('/', async (req, res) => {
     try {
         const newEvent = await Event.create(req.body)
@@ -41,8 +40,7 @@ events.post('/', async (req, res) => {
     }
 })
 
-// UPDATE events
-//THIS WORKS BUT THE BAND ONE DOESN'T
+// update events
 events.put('/:id', async (req, res) => {
     try {
         const updatedEvents = await Event.update(req.body, {

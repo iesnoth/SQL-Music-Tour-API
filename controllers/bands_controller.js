@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 const db = require('../models');
 const { Band } = db
 
-// FIND ALL BANDS
+// find all bands
 bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
@@ -34,7 +34,7 @@ bands.get('/:id', async (req, res) => {
     }
 })
 
-//create
+//create bands
 bands.post('/', async (req, res) => {
     try {
         //this method accepts an object as its argument that specifies
@@ -51,7 +51,7 @@ bands.post('/', async (req, res) => {
     }
 })
 
-// UPDATE A BAND
+// update bands
 bands.put('/:id', async (req, res) => {
     try {
         const updatedBands = await Band.update(req.body, {

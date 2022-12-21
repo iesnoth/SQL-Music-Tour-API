@@ -1,11 +1,10 @@
 //creating a router
 const stages = require('express').Router();
-//const { Op } = require('sequelize')
 //have all the models at once through the index file
 const db = require('../models');
 const { Stage } = db
 
-// FIND ALL BANDS
+// find all stages
 stages.get('/', async (req, res) => {
     try {
         const foundStages = await Stage.findAll()
@@ -28,7 +27,7 @@ stages.get('/:id', async (req, res) => {
     }
 })
 
-//create
+//create a stage
 stages.post('/', async (req, res) => {
     try {
         const newStage = await Stage.create(req.body)
@@ -41,7 +40,7 @@ stages.post('/', async (req, res) => {
     }
 })
 
-// UPDATE A stage
+// update a stage
 stages.put('/:id', async (req, res) => {
     try {
         const updatedStages = await Stage.update(req.body, {
@@ -59,7 +58,7 @@ stages.put('/:id', async (req, res) => {
 })
 
 
-//delete bands
+//delete stages
 stages.delete('/:id', async (req, res) => {
     try {
         const deleteStage = await Stage.destroy({
