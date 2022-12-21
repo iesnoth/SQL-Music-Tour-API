@@ -51,7 +51,7 @@ stages.put('/:id', async (req, res) => {
         }
         )
         res.status(200).json({
-            message: `Successfully updated ${updatedStages} band(s)`
+            message: `Successfully updated ${updatedStages} stage(s)`
         })
     } catch (err) {
         res.status(500).json(err)
@@ -59,20 +59,20 @@ stages.put('/:id', async (req, res) => {
 })
 
 
-// //delete bands
-// bands.delete('/:id', async (req, res) => {
-//     try {
-//         const deleteBand = await Band.destroy({
-//             where: {
-//                 band_id: req.params.id
-//             }
-//         })
-//         res.status(200).json({
-//             message: `Successfully deleted ${deleteBand} band(s)`
-//         })
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// })
+//delete bands
+stages.delete('/:id', async (req, res) => {
+    try {
+        const deleteStage = await Stage.destroy({
+            where: {
+                stage_id: req.params.id
+            }
+        })
+        res.status(200).json({
+            message: `Successfully deleted ${deleteStage} stage(s)`
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 
 module.exports = stages
