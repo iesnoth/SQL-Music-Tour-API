@@ -52,7 +52,6 @@ bands.post('/', async (req, res) => {
 })
 
 // UPDATE A BAND
-//why isn't this working?
 bands.put('/:id', async (req, res) => {
     try {
         const updatedBands = await Band.update(req.body, {
@@ -71,10 +70,6 @@ bands.put('/:id', async (req, res) => {
 
 
 //delete bands
-//this works, but the Band.destroy is returning a promise because of the await.
-//I've fixed this before by calling the function outside the async/await, but I don't
-//know if that will fly here.
-//this might be why the update isn't working
 bands.delete('/:id', async (req, res) => {
     try {
         const deleteBand = await Band.destroy({

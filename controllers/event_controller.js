@@ -42,7 +42,7 @@ events.post('/', async (req, res) => {
 })
 
 // UPDATE events
-//why isn't this working?
+//THIS WORKS BUT THE BAND ONE DOESN'T
 events.put('/:id', async (req, res) => {
     try {
         const updatedEvents = await Event.update(req.body, {
