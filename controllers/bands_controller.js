@@ -10,8 +10,9 @@ bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
             order: [['band_name', 'ASC']],
+            //query as http://localhost:3000/bands?band_name=bandname
             where: {
-                band_name: { [Op.like]: `%${req.query.band_name ? req.query.band_name : ''}% ` }
+                band_name: { [Op.like]: `%${req.query.name ? req.query.name : ''}%` }
             }
         })
         res.status(200).json(foundBands)
@@ -50,26 +51,33 @@ bands.post('/', async (req, res) => {
     }
 })
 
-//update bands
-bands.get('/:id', (req, res) => {
+// UPDATE A BAND
+//why isn't this working?
+bands.put('/:id', async (req, res) => {
     try {
-        const updateBand = Band.update(req.body, {
+        const updatedBands = await Band.update(req.body, {
             where: {
                 band_id: req.params.id
             }
-        })
+        }
+        )
         res.status(200).json({
-            message: `Successfully updated ${updateBand} band(s)`
+            message: `Successfully updated ${updatedBands} band(s)`
         })
     } catch (err) {
         res.status(500).json(err)
     }
 })
 
+
 //delete bands
-bands.delete('/:id', (req, res) => {
+//this works, but the Band.destroy is returning a promise because of the await.
+//I've fixed this before by calling the function outside the async/await, but I don't
+//know if that will fly here.
+//this might be why the update isn't working
+bands.delete('/:id', async (req, res) => {
     try {
-        const deleteBand = Band.destroy({
+        const deleteBand = await Band.destroy({
             where: {
                 band_id: req.params.id
             }
