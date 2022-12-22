@@ -2,7 +2,7 @@
 const events = require('express').Router();
 //have all the models at once through the index file
 const db = require('../models');
-const { Event } = db
+const { Event, MeetGreet, Stage, Band, SetTime } = db
 
 // find all events
 events.get('/', async (req, res) => {
@@ -16,10 +16,28 @@ events.get('/', async (req, res) => {
 
 
 //find a specific event
-events.get('/:id', async (req, res) => {
+events.get('/:city', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
-            where: { event_id: req.params.id }
+            where: { event_id: req.params.id },
+            //meet and greets
+            include: [
+                {
+                    model: MeetGreet,
+                    as: "meet_greets",
+                    include: {
+                        model: Band,
+                        as: "band"
+                        // where: {band_name: {[Op.like]: `%${req.query.band ? req.query.band : ''}`}}
+                    }
+                },
+                //stages
+                {
+                    model: Stage,
+                    as: "stages",
+                    include: { model: SetTime, as: "set_times" }
+                }
+            ]
         })
         res.status(200).json(foundEvent)
     } catch (err) {
