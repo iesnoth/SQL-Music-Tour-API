@@ -16,7 +16,7 @@ events.get('/', async (req, res) => {
 
 
 //find a specific event
-events.get('/:city', async (req, res) => {
+events.get('/:id', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
             where: { event_id: req.params.id },
@@ -25,7 +25,6 @@ events.get('/:city', async (req, res) => {
                 {
                     model: MeetGreet,
                     as: "meet_greets",
-                    //putting the band info inside the meet and greet array
                     include: {
                         model: Band,
                         as: "band"
@@ -35,7 +34,10 @@ events.get('/:city', async (req, res) => {
                 {
                     model: Stage,
                     as: "stages",
-                    include: { model: SetTime, as: "set_times" }
+                    include: {
+                        model: SetTime,
+                        as: "set_times"
+                    }
                 }
             ]
         })
