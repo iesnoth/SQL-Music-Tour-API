@@ -2,7 +2,7 @@
 const stages = require('express').Router();
 //have all the models at once through the index file
 const db = require('../models');
-const { Stage } = db
+const { Stage, Event, StageEvent } = db
 
 // find all stages
 stages.get('/', async (req, res) => {
@@ -19,7 +19,13 @@ stages.get('/', async (req, res) => {
 stages.get('/:id', async (req, res) => {
     try {
         const foundStage = await Stage.findOne({
-            where: { stage_id: req.params.id }
+            where: { stage_id: req.params.id },
+            include: {
+                model: Event,
+                as: "events",
+                //as a many to many, must have the junction table somewhere.
+                through: StageEvent
+            }
         })
         res.status(200).json(foundStage)
     } catch (err) {

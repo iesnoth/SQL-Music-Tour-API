@@ -25,10 +25,10 @@ events.get('/:city', async (req, res) => {
                 {
                     model: MeetGreet,
                     as: "meet_greets",
+                    //putting the band info inside the meet and greet array
                     include: {
                         model: Band,
                         as: "band"
-                        // where: {band_name: {[Op.like]: `%${req.query.band ? req.query.band : ''}`}}
                     }
                 },
                 //stages
