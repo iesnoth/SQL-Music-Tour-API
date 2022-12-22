@@ -6,7 +6,7 @@ const db = require('../models');
 const { Band, MeetGreet, Event, SetTime } = db
 
 // find all bands
-//TO QUERY THE BAND NAMES type them lowercase with '-' between each word
+//TO QUERY THE BAND NAMES type them with '-' between each word
 bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({

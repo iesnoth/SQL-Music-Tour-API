@@ -16,11 +16,10 @@ events.get('/', async (req, res) => {
 
 
 //find a specific event
-//NOT WORKING
-events.get('/:event', async (req, res) => {
+events.get('/:name', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
-            where: { city: req.params.event },
+            where: { city: req.params.name },
             //meet and greets
             include: [
                 {
@@ -62,11 +61,11 @@ events.post('/', async (req, res) => {
 })
 
 // update events
-events.put('/:id', async (req, res) => {
+events.put('/:name', async (req, res) => {
     try {
         const updatedEvents = await Event.update(req.body, {
             where: {
-                event_id: req.params.id
+                city: req.params.name
             }
         }
         )
@@ -80,11 +79,11 @@ events.put('/:id', async (req, res) => {
 
 
 //delete events
-events.delete('/:id', async (req, res) => {
+events.delete('/:name', async (req, res) => {
     try {
         const deleteEvent = await Event.destroy({
             where: {
-                event_id: req.params.id
+                city: req.params.name
             }
         })
         res.status(200).json({
