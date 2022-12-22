@@ -16,10 +16,10 @@ stages.get('/', async (req, res) => {
 
 
 //find a specific stage
-stages.get('/:id', async (req, res) => {
+stages.get('/:name', async (req, res) => {
     try {
         const foundStage = await Stage.findOne({
-            where: { stage_id: req.params.id },
+            where: { name: req.params.name },
             include: {
                 model: Event,
                 as: "events",
@@ -47,11 +47,11 @@ stages.post('/', async (req, res) => {
 })
 
 // update a stage
-stages.put('/:id', async (req, res) => {
+stages.put('/:name', async (req, res) => {
     try {
         const updatedStages = await Stage.update(req.body, {
             where: {
-                stage_id: req.params.id
+                name: req.params.name
             }
         }
         )
@@ -65,11 +65,11 @@ stages.put('/:id', async (req, res) => {
 
 
 //delete stages
-stages.delete('/:id', async (req, res) => {
+stages.delete('/:name', async (req, res) => {
     try {
         const deleteStage = await Stage.destroy({
             where: {
-                stage_id: req.params.id
+                name: req.params.name
             }
         })
         res.status(200).json({

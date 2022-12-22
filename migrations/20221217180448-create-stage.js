@@ -8,6 +8,12 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      stage_hands: {
+        type: Sequelize.INTEGER
+      },
+      name: {
+        type: Sequelize.STRING
       }
     });
   },

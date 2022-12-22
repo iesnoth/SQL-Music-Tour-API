@@ -12,9 +12,9 @@ module.exports = (sequelize, DataTypes) => {
         through: StageEvent
       })
       //set times
-      Stage.hasMany(SetTime,{
-        foreignKey:"stage_id",
-        as:"set_times"
+      Stage.hasMany(SetTime, {
+        foreignKey: "stage_id",
+        as: "set_times"
       })
     }
   }
@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     stage_hands: {
       type: DataTypes.INTEGER
+    },
+    name: {
+      type: DataTypes.STRING
     }
   },
     {

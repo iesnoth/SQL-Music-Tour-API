@@ -16,10 +16,11 @@ events.get('/', async (req, res) => {
 
 
 //find a specific event
-events.get('/:id', async (req, res) => {
+//NOT WORKING
+events.get('/:event', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
-            where: { event_id: req.params.id },
+            where: { city: req.params.event },
             //meet and greets
             include: [
                 {

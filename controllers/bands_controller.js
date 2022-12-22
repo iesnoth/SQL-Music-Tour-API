@@ -6,6 +6,7 @@ const db = require('../models');
 const { Band, MeetGreet, Event, SetTime } = db
 
 // find all bands
+//TO QUERY THE BAND NAMES type them lowercase with '-' between each word
 bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
@@ -35,7 +36,7 @@ bands.get('/:name', async (req, res) => {
                     include: {
                         model: Event,
                         as: "event",
-                        where: {city: {[Op.like]: `%${req.query.event ? req.query.event : ''}`}}
+                        where: { city: { [Op.like]: `%${req.query.event ? req.query.event : ''}` } }
                     }
                 },
                 {
@@ -43,7 +44,6 @@ bands.get('/:name', async (req, res) => {
                     as: "set_times",
                     include: { model: Event, as: "event" }
                 }
-                //to query: http://localhost:3000/bands/Relient-K?event=Austin
             ]
         })
         res.status(200).json(foundBand)
@@ -70,11 +70,11 @@ bands.post('/', async (req, res) => {
 })
 
 // update bands
-bands.put('/:id', async (req, res) => {
+bands.put('/:name', async (req, res) => {
     try {
         const updatedBands = await Band.update(req.body, {
             where: {
-                band_id: req.params.id
+                band_name: req.params.name
             }
         }
         )
@@ -88,11 +88,11 @@ bands.put('/:id', async (req, res) => {
 
 
 //delete bands
-bands.delete('/:id', async (req, res) => {
+bands.delete('/:name', async (req, res) => {
     try {
         const deleteBand = await Band.destroy({
             where: {
-                band_id: req.params.id
+                band_name: req.params.name
             }
         })
         res.status(200).json({
